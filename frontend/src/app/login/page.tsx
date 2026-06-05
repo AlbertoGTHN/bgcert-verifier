@@ -155,8 +155,7 @@ export default function LoginPage() {
 
           <div className="mt-8 p-4 bg-gray-800/50 rounded-xl border border-gray-700">
             <p className="text-xs text-gray-500 text-center">
-              <span className="font-medium text-gray-400">Default admin:</span>{" "}
-              admin@iccbpo.com / Admin@ICCBPO2024!
+              Contact your system administrator if you need access.
             </p>
           </div>
         </div>
