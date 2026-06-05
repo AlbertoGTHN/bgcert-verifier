@@ -114,17 +114,7 @@ docker-compose ps
 | **API Documentation** | http://localhost:8000/api/docs |
 | **Celery Monitor** | http://localhost:5555 |
 
----
 
-## Default Credentials
-
-> **IMPORTANT:** Change these after first login!
-
-| Field | Value |
-|---|---|
-| Email | `admin@iccbpo.com` |
-| Password | `Admin@ICCBPO2024!` |
-| Role | Admin |
 
 ---
 
