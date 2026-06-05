@@ -1,0 +1,83 @@
+# Simplified dev stack — no Nginx, no Celery, no Flower
+# Faster to build, easier to debug
+# Start with: docker compose -f docker-compose.dev.yml up
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: iccbpo_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: iccbpo_cert_checker
+      POSTGRES_USER: iccbpo
+      POSTGRES_PASSWORD: iccbpo_secure_pass_2024
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U iccbpo"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: iccbpo_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: iccbpo_backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+asyncpg://iccbpo:iccbpo_secure_pass_2024@postgres:5432/iccbpo_cert_checker
+      DATABASE_URL_SYNC: postgresql://iccbpo:iccbpo_secure_pass_2024@postgres:5432/iccbpo_cert_checker
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/1
+      SECRET_KEY: dev-secret-key-for-local-testing-only-change-in-prod
+      JWT_SECRET_KEY: dev-jwt-secret-key-for-local-testing-only-change
+      ALLOWED_ORIGINS: '["http://localhost:3000","http://localhost:80","http://127.0.0.1:3000"]'
+      DEBUG: "true"
+      UPLOAD_DIR: /app/uploads
+      SCREENSHOT_DIR: /app/screenshots
+      REPORTS_DIR: /app/reports
+      TEMP_DIR: /app/temp
+      PLAYWRIGHT_HEADLESS: "true"
+      OCR_LANGUAGES: eng+spa+por+fra
+      ADMIN_EMAIL: admin@iccbpo.com
+      ADMIN_PASSWORD: "Admin@ICCBPO2024!"
+      ADMIN_NAME: System Admin
+    volumes:
+      - ./uploads:/app/uploads
+      - ./screenshots:/app/screenshots
+      - ./reports:/app/reports
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: iccbpo_frontend
+    restart: unless-stopped
+    environment:
+      # Internal URL used by Next.js server-side rewrites (container-to-container)
+      BACKEND_INTERNAL_URL: http://backend:8000
+      # Public URL shown in browser (localhost because port is mapped)
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

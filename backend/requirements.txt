@@ -1,0 +1,74 @@
+# ===== CORE FRAMEWORK =====
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+python-multipart==0.0.9
+pydantic==2.7.1
+pydantic-settings==2.2.1
+
+# ===== DATABASE =====
+sqlalchemy==2.0.30
+alembic==1.13.1
+asyncpg==0.29.0
+psycopg2-binary==2.9.9
+greenlet==3.0.3
+
+# ===== AUTHENTICATION =====
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
+pyotp==2.9.0
+qrcode[pil]==7.4.2
+
+# ===== BACKGROUND TASKS =====
+celery==5.3.6
+redis==5.0.4
+flower==2.0.1
+kombu==5.3.4
+
+# ===== PDF PROCESSING =====
+PyMuPDF==1.24.3
+pdf2image==1.17.0
+Pillow==10.3.0
+img2pdf==0.5.1
+
+# ===== OCR =====
+pytesseract==0.3.10
+opencv-python-headless==4.9.0.80
+numpy==1.26.4
+
+# ===== QR CODE =====
+pyzbar==0.1.9
+zxing-cpp==2.2.0
+
+# ===== WEB SCRAPING / VERIFICATION =====
+playwright==1.43.0
+httpx==0.27.0
+beautifulsoup4==4.12.3
+lxml==5.2.1
+tldextract==5.1.2
+
+# ===== REPORT GENERATION =====
+reportlab==4.2.0
+openpyxl==3.1.2
+jinja2==3.1.4
+
+# ===== SECURITY =====
+cryptography==42.0.7
+python-dotenv==1.0.1
+itsdangerous==2.2.0
+
+# ===== FILE HANDLING =====
+aiofiles==23.2.1
+python-magic==0.4.27
+
+# ===== UTILITIES =====
+loguru==0.7.2
+humanize==4.9.0
+python-dateutil==2.9.0
+langdetect==1.0.9
+chardet==5.2.0
+requests==2.31.0
+
+# ===== MONITORING =====
+prometheus-client==0.20.0
+slowapi==0.1.9

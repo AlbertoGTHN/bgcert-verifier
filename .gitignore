@@ -1,0 +1,53 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Uploads / Generated files
+uploads/
+screenshots/
+reports/
+temp/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+.next/
+out/
+.vercel/
+
+# Database
+*.db
+*.sqlite
+
+# Logs
+*.log
+logs/
+
+# Docker volumes
+postgres_data/
+redis_data/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# SSL certs (never commit)
+nginx/ssl/*.crt
+nginx/ssl/*.key
+nginx/ssl/*.pem

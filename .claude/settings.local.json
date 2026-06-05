@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir /S /B \"C:\\\\Users\\\\alber\\\\OneDrive\\\\Documents\\\\ICC\\\\Background Certificate QR Code Checker\")",
+      "Bash(docker compose *)",
+      "Bash(docker context *)",
+      "Bash(DOCKER_CONTEXT=desktop-linux docker compose -f docker-compose.dev.yml build backend frontend)",
+      "Bash(docker --version)",
+      "Bash(docker-compose --version)",
+      "Bash(ls \"C:\\\\Users\\\\alber\\\\OneDrive\\\\Documents\\\\ICC\")",
+      "Bash(Start-Sleep -Seconds 90)",
+      "Bash(curl -sk -u admin:SecretPassword https://localhost:9200/_cluster/health?pretty)",
+      "Bash(curl -sk -u admin:SecretPassword \"https://localhost:9200/_cluster/health\")",
+      "Bash(docker exec *)",
+      "Bash(curl -sk -u admin:SecretPassword \"https://localhost:9200/_cluster/health?pretty\")",
+      "Bash(curl -sk -o /dev/null -w \"Dashboard HTTP status: %{http_code}\" https://localhost)",
+      "PowerShell(docker exec wazuh-docker-wazuh.indexer-1 env JAVA_HOME=/usr/share/wazuh-indexer/jdk /usr/share/wazuh-indexer/plugins/opensearch-security/tools/hash.sh -p SecretPassword 2>&1)",
+      "PowerShell(docker exec wazuh-docker-wazuh.indexer-1 env JAVA_HOME=/usr/share/wazuh-indexer/jdk /usr/share/wazuh-indexer/plugins/opensearch-security/tools/hash.sh -p kibanaserver 2>&1)",
+      "Bash(curl -s http://localhost:8000/health)"
+    ]
+  }
+}
